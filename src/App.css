@@ -1,38 +1,380 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.wrapper {
+  max-width: 1280px;
+  margin: 50px auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* ++++++ шапка +++++++ */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100%;
+  margin-bottom: 50px;
+}
+header img {
+  width: 150px;
+}
+header p a {
+  text-decoration: none;
+}
+
+.shopCartBtn {
+  color: #ec6602;
+  font-size: 45px;
+  cursor: pointer;
+  transition: color .5s ease;
+}
+.shopCartBtn:hover,
+.shopCartBtn.active {
+  color: red;
+}
+
+/* ++++++ корзина +++++++ */
+
+
+.shopCart {
+  position: absolute;
+  width: 400px;
+  background-color: rgb(206, 206, 206);
+  z-index: 2;
+  right: 0;
+  top: 70px;
+  padding: 20px;
+}
+.shopCart .item {
+  width: 100%;
+}
+.shopCart .item img {
+  width: 60px;
+  float: left;
+  margin-right: 20px;
+}
+.shopCart .item h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.shopCart .item b {
+  color: gray;
+}
+.empty h2 {
+  font-size: 20px;
+}
+.delete {
+  color: #ec6602;
+  float: right;
+  position: relative;
+  font-size: 30px;
+  bottom: 20px;
+  cursor: pointer;
+  transition: color .5s ease;
+}
+.delete:hover {
+  color: red;
+}
+.summa {
+  float: left;
+  width: 100%;
+  border-top: 2px solid gray;
+  padding-top: 10px;
+  font-size: 20px;
+}
+
+
+/* ======  изображения  ======= */
+
+
+.imageClass {
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+.imageClass::-webkit-scrollbar {
+  width: 0px;
+}
+.imageClass img {
+  width: 350px;
+  margin-right: 70px;
+  border-radius: 5px;
+}
+
+
+
+/* ++++++ категории товаров, меню +++++++ */
+
+
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  overflow-x: auto;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  position: sticky;
+  top: 0;
+  background-color: rgb(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+  margin-bottom: 30px;
+}
+.categories::-webkit-scrollbar {
+  width: 0px;
+}
+.categories div {
+  margin: 5px;
+  padding: 10px 10px;
+  font-size: 20px;
+  font-weight: bolder;
+  text-decoration: none;
+  color: black;
+  min-width: fit-content;
+}
+
+
+
+
+/* ++++++ список товаров +++++++ */
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+main .item {
+  height: 380px;
+}
+main h2 {
+  font-size: 25px;
+}
+main p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: gray;
+}
+main b {
+  position: absolute;
+  bottom: 10px;
+}
+main h2,
+main p,
+main b {
+  margin: 10px 20px;
+}
+main .item {
+  width: 30%;
+  margin-bottom: 30px;
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 20px;
+}
+main .item img {
+  width: 100%;
+  border-radius: 7px 7px 0 0;
+  transition: transform 1s ease;
+  cursor: pointer;
+}
+main .item img:hover {
+  transform: scale(1.1);
+}
+main .add {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 5px 15px;
+  font-size: 35px;
   color: white;
+  background-color: #1dbf73;
+  border-radius: 10px;
+  cursor: pointer;
+}
+main .add:hover {
+  background-color: #217e52;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* ++++++ информация о продукте +++++++ */
+
+
+.fullItem {
+  overflow: auto;
+  position: fixed;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-color: rgb(0, 0, 0, 0.8);
+  z-index: 3;
+}
+.fullItem > div {
+  width: 600px ;
+  position: relative;
+  margin: 5% auto;
+  padding: 30px 40px;
+  background-color: white;
+  border-radius: 10px;
+}
+.fullItem .btn {
+  float: right;
+  margin-bottom: 20px;
+  color: #ec6602;
+  border: none;
+  font-size: 30px;
+  transition: color .5s ease;
+}
+.fullItem .btn:hover {
+  color: red;
+}
+.fullItem img {
+  width: 100%;
+  border-radius: 7px 7px 0 0;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.fullItem .add {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 5px 15px;
+  font-size: 35px;
+  color: white;
+  background-color: #1dbf73;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.fullItem .add:hover {
+  background-color: #217e52;
+}
+.fullItem h2,
+.fullItem p,
+.fullItem b {
+  margin: 10px 20px;
+}
+.fullItem p {
+  color: gray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+/* ++++++ footer +++++++ */
+
+
+footer {
+  text-align: center;
+  margin: 50px;
+}
+
+@media all and (max-width: 1050px) {
+  .wrapper {
+    margin: 25px;
   }
-  to {
-    transform: rotate(360deg);
+  main .item {
+    height: 360px;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .wrapper {
+    margin: 20px;
+  }
+  .shopCartBtn {
+    font-size: 40px;
+  }
+
+  main .add {
+    right: 15px;
+    bottom: 18px;
+    padding: 2px 10px;
+    font-size: 18px;
+  }
+  main .item {
+    height: 240px;
+  }
+  main h2 {
+    font-size: 18px;
+  }
+  main b {
+    position: absolute;
+    bottom: 10px;
+  }
+  main h2,
+  main p,
+  main b {
+    margin: 5px 5px;
+  }
+}
+@media all and (max-width: 500px) {
+  .wrapper {
+    margin: 15px;
+  }
+  header img {
+    width: 120px;
+  }
+  .shopCartBtn {
+    font-size: 30px;
+  }
+  .shopCart {
+    width: 300px;
+  }
+
+  main .item {
+    width: 45%;
+  }
+  main .add {
+    right: 18px;
+    bottom: 18px;
+    padding: 3px 10px;
+    font-size: 20px;
+  }
+  main h2,
+  main p,
+  main b {
+    margin: 5px 5px;
+  }
+  main h2 {
+    font-size: 20px;
+  }
+  main .item {
+    height: 220px;
+  }
+  main h2 {
+    font-size: 18px;
+  }
+  main b {
+    position: absolute;
+    bottom: 18px;
+  }
+
+
+  .fullItem > div {
+    width: 280px ;
+    margin: 2% auto;
+    padding: 10px;
+  }
+  .fullItem .btn {
+    margin-bottom: 10px;
+    color: #ec6602;
+    border: none;
+    font-size: 30px;
+  }
+  .fullItem .add {
+    right: 10px;
+    bottom: 10px;
+    padding: 5px 15px;
+    font-size: 30px;
   }
 }
